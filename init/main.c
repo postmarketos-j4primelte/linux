@@ -1416,6 +1416,9 @@ static int __ref kernel_init(void *unused)
 
 	do_sysctl_args();
 
+	printk("mask=%lu\n", current->cpus_allowed.bits[0]);
+	current->cpus_allowed.bits[0] = 1;
+
 	if (ramdisk_execute_command) {
 		ret = run_init_process(ramdisk_execute_command);
 		if (!ret)
